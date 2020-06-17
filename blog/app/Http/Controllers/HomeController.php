@@ -14,7 +14,7 @@ class HomeController extends Controller
         // dd($students);
 
         // WHERE
-        // $students = student::where('nome' , 'marco madeddu' )->get();
+        $students = student::where('nome' , 'marco madeddu' )->get();
 
         // ORDER BY (LIMIT)
         // $students = Student::orderBy('nome', 'asc') ->limit(1)->get();
@@ -23,7 +23,7 @@ class HomeController extends Controller
         // $students = Student::orderBy('nome', 'asc')->get();
 
         //first
-        $students = Student::where('id' , 1)->first();
+        // $students = Student::where('id' , 1)->first();
 
         return view('welcome' , compact('students'));
     }

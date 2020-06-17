@@ -13,4 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
+//homepage
+Route::get('/', 'TeamController@index')->name('home');
+
+//NbaTeams
+
+Route::resource('NbaTeam', 'NbaTeamController');
