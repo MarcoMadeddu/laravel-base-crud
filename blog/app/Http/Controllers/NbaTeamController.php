@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Team;
+use Illuminate\Validation\Rule;
 
 class NbaTeamController extends Controller
 {
@@ -37,20 +38,16 @@ class NbaTeamController extends Controller
     public function store(Request $request)
     {
        $data= $request->all();
-
+        
        //validazione
-       $request->validate([
-            'name' => 'required|unique:teams|max:30',
-            'city' => 'required|max:20',
-            'titles' => 'required',
-            'description' => 'required|max:200'
-       ]);
+       $request->validate($this->validationRules($data['name']));
 
        $newteam = new Team;
-       $newteam->name = $data['name'];
-       $newteam->city = $data['city'];
-       $newteam->titles = $data['titles'];
-       $newteam->description = $data['description'];
+    //    $newteam->name = $data['name'];
+    //    $newteam->city = $data['city'];
+    //    $newteam->titles = $data['titles'];
+    //    $newteam->description = $data['description'];
+       $newteam->fill($data);
        $saved = $newteam->save();
        
 
@@ -79,9 +76,11 @@ class NbaTeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Team $team)
     {
-        //
+        // $team = Team::find($id); dietro le quinte
+
+        return view('NbaTeams.edit',compact('team'));
     }
 
     /**
@@ -91,9 +90,20 @@ class NbaTeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Team $team)
     {
-        //
+        
+        $request->validate($this->validationRules($team->id));
+        //validazione
+        $data = $request->all();
+
+        $updated = $team->update($data);
+        // dd($updated);
+
+
+       if($updated){
+        return redirect()->route('teams.show' , $team->id);
+    }
     }
 
     /**
@@ -102,8 +112,32 @@ class NbaTeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Team $team)
     {
-        //
+        $ref= $team->name;
+        $deleted = $team->delete();
+
+        //redirect
+
+        if($deleted){
+            return redirect()->route('teams.index')->with('deleted' , $ref);
+        }
+    }
+
+
+    //validation
+
+    private function validationRules($id){
+
+        return[
+            'name' => [
+                'required',
+                'max:30',
+                Rule::unique('teams')->ignore($id),
+            ],
+            'city' => 'required|max:20',
+            'titles' => 'required',
+            'description' => 'required|max:200'
+        ];
     }
 }

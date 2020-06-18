@@ -14,7 +14,6 @@
             </thead>
             <tbody>
                     <tr>
-                        <td>{{ $team->id }}</td>
                         <td>{{ $team->name }}</td>
                         <td>{{ $team->city }}</td>
                         <td>{{ $team->titles }}</td>

@@ -8,5 +8,10 @@ class Team extends Model
 {
     //scrittura / modifica attributi
 
-    
+    protected $fillable = [
+        'name',
+        'city',
+        'titles',
+        'description',
+    ];
 }
