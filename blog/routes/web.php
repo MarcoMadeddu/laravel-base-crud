@@ -18,4 +18,4 @@ Route::get('/', 'TeamController@index')->name('home');
 
 //NbaTeams
 
-Route::resource('NbaTeam', 'NbaTeamController');
+Route::resource('teams', 'NbaTeamController');

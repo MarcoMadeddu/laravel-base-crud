@@ -18,7 +18,7 @@
                     <tr>
                         <td>{{ $team->id }}</td>
                         <td>{{ $team->name }}</td>
-                        <td><a class="btn btn-success"href="{{ route ('NbaTeam.show' , $team->id) }}">SHOW</a></td>
+                        <td><a class="btn btn-success"href="{{ route ('teams.show' , $team->id) }}">SHOW</a></td>
                         <td>UPDATE</td>
                         <td>DELETE</td>
                     </tr>

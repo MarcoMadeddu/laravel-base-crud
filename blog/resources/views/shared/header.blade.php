@@ -18,8 +18,8 @@
             <div class="nav-link">
                 <a href="{{ route('home')}}">Home</a>
 
-                <a class="ml-4 mr-4"href="{{ route('NbaTeam.index')}}">View all Teams</a>
-                <a href="{{ route('NbaTeam.create')}}">Add a new team</a>
+                <a class="ml-4 mr-4"href="{{ route('teams.index')}}">View all Teams</a>
+                <a href="{{ route('teams.create')}}">Add a new team</a>
             </div>
         </nav>
     </header>

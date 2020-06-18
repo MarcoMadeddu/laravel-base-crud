@@ -12,7 +12,7 @@
         </div>
     @endif
 
-   <form action="{{route('NbaTeam.store')}}" method="POST">
+   <form action="{{route('teams.store')}}" method="POST">
         @csrf
         @method('POST')
 

@@ -56,7 +56,7 @@ class NbaTeamController extends Controller
 
        if($saved){
            $newteam = Team::find($newteam->id);
-           return redirect()->route('NbaTeam.show' , $newteam);
+           return redirect()->route('teams.show' , $newteam);
        }
     }
 
@@ -66,10 +66,10 @@ class NbaTeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Team $team)
     {
         // dd($id);
-        $team = Team::find($id);
+        // $team = Team::find($id);
         return view('NbaTeams.show' , compact('team'));
     }
 
