@@ -66,10 +66,11 @@ class NbaTeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $teams)
+    public function show($id)
     {
-        dd($teams);
-        return view('NbaTeams.show' , compact('teams'));
+        // dd($id);
+        $team = Team::find($id);
+        return view('NbaTeams.show' , compact('team'));
     }
 
     /**
