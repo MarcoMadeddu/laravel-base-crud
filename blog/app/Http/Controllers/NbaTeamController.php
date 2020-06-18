@@ -40,7 +40,7 @@ class NbaTeamController extends Controller
        $data= $request->all();
         
        //validazione
-       $request->validate($this->validationRules($data['name']));
+       $request->validate($this->validationRules());
 
        $newteam = new Team;
     //    $newteam->name = $data['name'];
@@ -127,7 +127,7 @@ class NbaTeamController extends Controller
 
     //validation
 
-    private function validationRules($id){
+    private function validationRules($id = null){
 
         return[
             'name' => [
