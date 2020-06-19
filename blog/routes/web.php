@@ -19,3 +19,10 @@ Route::get('/', 'TeamController@index')->name('home');
 //NbaTeams
 
 Route::resource('teams', 'NbaTeamController');
+
+//tecahers
+
+Route::get('teachers', 'TeacherController@index')->name('teachers');
+
+//Classroom
+Route::get('classroom', 'ClassroomController@index')->name('classroom');
